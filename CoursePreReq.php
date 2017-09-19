@@ -11,33 +11,34 @@ require __DIR__.'/vendor/autoload.php';
 
 use UWaterlooAPI\Client;
 use UWaterlooAPI\Endpoints;
-use CourseStructs;
 
 // make a client
 $client = new Client([
     'key' => '51fe73e9affa7afc1561fcd44f607fdc', // your API key
 ]);
 
+$client->setConfig([
+    'format' => Client::JSON,
+]);
+
 $coursesYouWant = ["CS246", "MATH137", "CHINA120R"];
-$courseSubject = array();
-$courseCode = array();
 $coursesToTake = array();
+$invalidCourses = array();
 
-function courseParser($coursesWanted){
+
+
+function courseParser($coursesWanted, $invalidCourses,$client){
     foreach($coursesWanted as $course){
-        //$Sub = course first part
-        //$Code = course second part
-
-        array_push($courseSubject, $firstThing);
-        array_push($courseCode, $secondThing);
+        $courseNode = new CourseNode($course, $client);
+        if(!$courseNode){
+            array_push($invalidCourses, $course);
+        }
     }
 }
 /*
 // change some client configuration options
 // setConfig() will merge the provided options into the existing client configuration
-$client->setConfig([
-    'format' => Client::JSON,
-]);
+
 
 $promise = $client->request(Endpoints::COURSES_SUBJECT_CATALOG_PREREQUISITES, [
     'subject' => 'MATH',
@@ -54,3 +55,4 @@ $promise->then(
         echo $error->getMessage().PHP_EOL;
     }
 );
+*/
