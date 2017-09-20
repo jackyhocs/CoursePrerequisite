@@ -1,5 +1,5 @@
 # CoursePrerequisite
-This PHP program will output the list of chain prerequisites for a given list of desired courses. Courses are output in a post-order order by a graph traversal
+This program will output the prerequisite chain for a given list of desired courses. Courses are output in a post-order order by a graph traversal (So we know which courses to take first).
 
 #Example
 
