@@ -119,17 +119,3 @@ class CourseTree
         }
     }
 }
-$courseTree = new CourseTree();
-$coursesYouWant = ["MATH128", "CS136"];
-
-function courseParser($coursesWanted)
-{
-    foreach ($coursesWanted as $course) {
-        $courseNode = new CourseNode($course);
-        CourseTree::$nodes[] = $courseNode;
-    }
-}
-
-courseParser($coursesYouWant);
-$courseTree->printTree();
-echo "FINISHED" . PHP_EOL;
